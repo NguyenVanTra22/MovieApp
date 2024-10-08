@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginVC" customModule="MovieApp" customModuleProvider="target">
+            <connections>
+                <outlet property="forgotPasswordButton" destination="m4L-El-1bR" id="ZzV-wJ-dVP"/>
+                <outlet property="loginButton" destination="vbN-gI-Rp8" id="gx2-Ov-K8l"/>
+                <outlet property="registerButton" destination="Cnq-dZ-buY" id="tea-YC-dCw"/>
+                <outlet property="tfEmail" destination="pig-ex-bYW" id="2KC-gh-fi4"/>
+                <outlet property="tfPassword" destination="vNd-SH-8L3" id="DeD-w8-LN4"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pig-ex-bYW">
+                    <rect key="frame" x="20" y="104" width="374" height="34"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vNd-SH-8L3">
+                    <rect key="frame" x="20" y="183" width="374" height="34"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m4L-El-1bR">
+                    <rect key="frame" x="172" y="263" width="181" height="35"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Forgot the password"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cnq-dZ-buY">
+                    <rect key="frame" x="123" y="395" width="168" height="44"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Register">
+                        <backgroundConfiguration key="background">
+                            <color key="backgroundColor" name="AccentColor"/>
+                        </backgroundConfiguration>
+                        <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </buttonConfiguration>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vbN-gI-Rp8">
+                    <rect key="frame" x="123" y="332" width="168" height="44"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Login">
+                        <backgroundConfiguration key="background">
+                            <color key="backgroundColor" systemColor="linkColor"/>
+                        </backgroundConfiguration>
+                        <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </buttonConfiguration>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="pig-ex-bYW" firstAttribute="centerX" secondItem="Cnq-dZ-buY" secondAttribute="centerX" id="DPs-3G-w4R"/>
+                <constraint firstItem="vbN-gI-Rp8" firstAttribute="top" secondItem="m4L-El-1bR" secondAttribute="bottom" constant="34" id="EPv-Nk-ldf"/>
+                <constraint firstItem="pig-ex-bYW" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailingMargin" id="PRw-W0-m0l"/>
+                <constraint firstItem="pig-ex-bYW" firstAttribute="centerX" secondItem="vbN-gI-Rp8" secondAttribute="centerX" id="Pbk-fs-Fdq"/>
+                <constraint firstItem="Cnq-dZ-buY" firstAttribute="top" secondItem="vbN-gI-Rp8" secondAttribute="bottom" constant="19" id="Xdf-fc-Ivj"/>
+                <constraint firstItem="pig-ex-bYW" firstAttribute="leading" secondItem="vNd-SH-8L3" secondAttribute="leading" id="a47-4O-Vuz"/>
+                <constraint firstItem="vbN-gI-Rp8" firstAttribute="leading" secondItem="Cnq-dZ-buY" secondAttribute="leading" id="jjg-AT-KO4"/>
+                <constraint firstItem="vbN-gI-Rp8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="123" id="oMZ-Vy-6vD"/>
+                <constraint firstItem="m4L-El-1bR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="172" id="pgg-TX-H2D"/>
+                <constraint firstItem="vbN-gI-Rp8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="332" id="qtH-St-8vN"/>
+                <constraint firstItem="pig-ex-bYW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" id="rMG-k9-Rra"/>
+                <constraint firstItem="vNd-SH-8L3" firstAttribute="top" secondItem="pig-ex-bYW" secondAttribute="bottom" constant="45" id="rMr-J8-W8d"/>
+                <constraint firstItem="pig-ex-bYW" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="60" id="uYk-v9-eeS"/>
+                <constraint firstItem="pig-ex-bYW" firstAttribute="trailing" secondItem="vNd-SH-8L3" secondAttribute="trailing" id="xRv-cK-ttK"/>
+            </constraints>
+            <point key="canvasLocation" x="64.885496183206101" y="-11.267605633802818"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
