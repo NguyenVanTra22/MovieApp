@@ -178,9 +178,12 @@ class RegisterVC: UIViewController {
 
         // Firebase Auth tạo tài khoản người dùng (sử dụng Observable)
         createUser(email: email, password: password)
+            //Nhận user từ create
             .flatMap { user -> Observable<String?> in
                 if let user = user {
+                    //User không nil thì thấy Token, đặt token trong create
                     return Observable.create { observer in
+                        // Lấy đc token thì đẩy vào onNext, không thì vào Error
                         user.getIDToken { idToken, error in
                             if let error = error {
                                 observer.onError(error)
@@ -192,10 +195,13 @@ class RegisterVC: UIViewController {
                         return Disposables.create()
                     }
                 } else {
+                    // User trả về là nil hặc lỗi thì trả về cái này
                     return Observable.just(nil)
                 }
             }
+            // Lưu thông tin vào Firebase, Trar về Observable: true là lưu thành công
             .flatMap { idToken -> Observable<Bool> in
+                // Lấy idToken từ bên trên
                 guard let idToken = idToken else {
                     return Observable.just(false)
                 }
@@ -206,6 +212,7 @@ class RegisterVC: UIViewController {
                 // Lưu thông tin người dùng vào Firestore qua API
                 return self.saveUserToFirestore(userID: Auth.auth().currentUser?.uid ?? "", name: name, email: email, dateOfBirth: dateOfBirth, idToken: idToken)
             }
+        //subscribe để nhận kết quả từ bên trên là true hay false với onNext; onError để trả về lỗi
             .subscribe(onNext: { success in
                 if success {
                     print("Lưu người dùng thành công")

@@ -109,20 +109,25 @@ class LoginVC: UIViewController {
     func setupBindings() {
         let emailObservable = tfEmail.rx.text.orEmpty.asObservable()
         let passwordObservable = tfPassword.rx.text.orEmpty.asObservable()
-        
+        // Kết hợp 2 observe email, password, xử lý nhiều đầu vào 1 lúc
         Observable.combineLatest(emailObservable, passwordObservable)
+        //map để kiểm tra rỗng, trả về true/false
             .map { email, password in
                 return !email.isEmpty && !password.isEmpty
             }
+        // kết quả từ map đẩy vào isEnabled để làm điều kiện cho nút login hoạt động
             .bind(to: loginButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
         loginButton.rx.tap
+        // lấy email, pass mới nhất tù Observable
             .withLatestFrom(Observable.combineLatest(emailObservable, passwordObservable))
+        // trả về Obsevable cho đăng nhập, thay thế mọi yêu cầu đăng nhập trước đó nếu bấm nút login liên tục, giảm tải API request liên tục
             .flatMapLatest { [weak self] email, password -> Observable<[String: Any]> in
                 guard let self = self else { return Observable.empty() }
                 return self.login(email: email, password: password)
             }
+        // lắng nghe và xử lý kết quả khi Observale trả dữ liệu login về
             .subscribe(onNext: { [weak self] json in
                 if let idToken = json["idToken"] as? String {
                     print("Đăng nhập thành công với token: \(idToken)")
@@ -156,21 +161,27 @@ class LoginVC: UIViewController {
             "password": password,
             "returnSecureToken": true
         ]
-
+        // Tạo 1 Observable tuỳ chỉnh, bên trong closure xử lý bất đồng bộ API
         return Observable.create { observer in
             AF.request(loginUrl, method: .post, parameters: parameters, encoding: JSONEncoding.default)
                 .validate()
                 .responseJSON { response in
                     switch response.result {
+                        // Thành công thì xử lý dữ liệu từ server thành json
                     case .success(let data):
+                        //Kiểm tra có đúng là json không
                         if let json = data as? [String: Any] {
+                            // Hợp lệ thì phát json tới người dùng
                             observer.onNext(json)
                         } else {
+                            // Phát ra lỗi với dữ liệu json trả về
                             observer.onError(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid data"]))
                         }
                     case .failure(let error):
+                        //lỗi xảy ra trong quá trình yêu cầu HTTP, lỗi đó sẽ được phát
                         observer.onError(error)
                     }
+                    //Sau khi xử lý xong (dù thành công hay thất bại), observer.onCompleted() sẽ được gọi để báo hiệu rằng Observable đã hoàn thành công việc của nó.
                     observer.onCompleted()
                 }
             return Disposables.create()
@@ -179,7 +190,7 @@ class LoginVC: UIViewController {
     
     // Chuyển tới màn hình danh sách phim sau khi đăng nhập thành công
     func navigateToMovieList() {
-        let movieListVC = TabBarController()
+        let movieListVC = ProfileViewController()
         let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
         sceneDelegate?.window?.rootViewController = UINavigationController(rootViewController: movieListVC)
     }
